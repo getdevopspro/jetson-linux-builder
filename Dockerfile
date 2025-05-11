@@ -61,6 +61,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         wget
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
+    export TZ="UTC" && \
     ./tools/l4t_flash_prerequisites.sh
 
 CMD ["/bin/bash"]
