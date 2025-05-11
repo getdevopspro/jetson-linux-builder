@@ -1,6 +1,6 @@
 ARG ARG_IMAGE_FROM=docker.io/ubuntu:jammy
 ############ RELEASE ARTIFACT ############
-FROM ${ARG_IMAGE_FROM} AS jetson_release_artfifact
+FROM ${ARG_IMAGE_FROM} AS jetson_release_artifact
 
 ARG JETSON_VERSION_MAJOR=36
 ARG JETSON_VERSION_MINOR=4
@@ -38,7 +38,7 @@ ENV JETSON_VERSION_MAJOR=${JETSON_VERSION_MAJOR} \
     JETSON_LINUX_RELEASE_PACKAGE_NAME=${JETSON_LINUX_RELEASE_PACKAGE_NAME} \
     JETSON_LINUX_RELEASE_PACKAGE_URL=${JETSON_LINUX_RELEASE_PACKAGE_URL}
 
-COPY --from=jetson_release_artfifact /workspace /workspace
+COPY --from=jetson_release_artifact /workspace /workspace
 
 WORKDIR /workspace
 
