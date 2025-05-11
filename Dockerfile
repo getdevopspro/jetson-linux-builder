@@ -47,11 +47,14 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get update && apt-get install -y \
         bzip2 \
         cpp \
+        curl \
         device-tree-compiler \
         lbzip2 \
         mkbootimg \
+        nano \
         python3 \
-        sudo
+        sudo \
+        wget
 
 RUN ./tools/l4t_flash_prerequisites.sh
 
