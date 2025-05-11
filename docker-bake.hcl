@@ -3,18 +3,19 @@ variable "IMAGE_NAME" {
   default = "ghcr.io/getdevopspro/jetson-linux-builder"
 }
 
-variable "JETSON_VERSIONS" {
+variable "JETSON_VERSION_PAIRS" {
   # IMPORTANT: latest always be the first element in the list
-  default = [
-    {
-      ubuntu_release = "jammy"
-      number         = "36.4.3"
-    },
-    {
-      ubuntu_release = "focal"
-      number         = "35.6.1"
-    },
-  ]
+  default = ["36.4.3,jammy", "35.6.1,focal"]
+}
+
+function "jetson_version" {
+  params = [jetson_version_pair]
+  result = split(",", jetson_version_pair)[0]
+}
+
+function "jetson_ubuntu_release" {
+  params = [jetson_version_pair]
+  result = split(",", jetson_version_pair)[1]
 }
 
 target "docker-metadata-action" {}
@@ -23,32 +24,32 @@ target "build" {
   inherits   = ["docker-metadata-action"]
   context    = "./"
   dockerfile = "Dockerfile"
-  name       = "${replace(sanitize(IMAGE_NAME), "_", "-")}-${replace(sanitize(jetson_version.number), "_", "-")}"
+  name       = "${replace(sanitize(IMAGE_NAME), "_", "-")}-${replace(sanitize(jetson_version(jetson_version_pair)), "_", "-")}"
   platforms = [
     "linux/amd64",
     "linux/arm64",
   ]
   matrix = {
-    jetson_version = JETSON_VERSIONS
+    jetson_version_pair = JETSON_VERSION_PAIRS
   }
   args = {
-    JETSON_VERSION       = jetson_version.number,
-    JETSON_VERSION_MAJOR = split(".", jetson_version.number)[0],
-    JETSON_VERSION_MINOR = split(".", jetson_version.number)[1],
-    JETSON_VERSION_PATCH = split(".", jetson_version.number)[2],
-    ARG_IMAGE_FROM       = "docker.io/ubuntu:${jetson_version.ubuntu_release}",
+    JETSON_VERSION       = jetson_version(jetson_version_pair),
+    JETSON_VERSION_MAJOR = split(".", jetson_version(jetson_version_pair))[0],
+    JETSON_VERSION_MINOR = split(".", jetson_version(jetson_version_pair))[1],
+    JETSON_VERSION_PATCH = split(".", jetson_version(jetson_version_pair))[2],
+    ARG_IMAGE_FROM       = "docker.io/ubuntu:${jetson_ubuntu_release(jetson_version_pair)}",
   }
   tags = concat(
-    jetson_version.number == JETSON_VERSIONS[0].number ? ["${IMAGE_NAME}:latest"] : [],
+    jetson_version_pair == JETSON_VERSION_PAIRS[0] ? ["${IMAGE_NAME}:latest"] : [],
     [
-      "${IMAGE_NAME}:${split(".", jetson_version.number)[0]}",
-      "${IMAGE_NAME}:${split(".", jetson_version.number)[0]}.${split(".", jetson_version.number)[1]}",
-      "${IMAGE_NAME}:${jetson_version.number}",
-      "${IMAGE_NAME}:${jetson_version.number}-${formatdate("YYYYMMDDhhmm", timestamp())}",
+      "${IMAGE_NAME}:${split(".", jetson_version(jetson_version_pair))[0]}",
+      "${IMAGE_NAME}:${split(".", jetson_version(jetson_version_pair))[0]}.${split(".", jetson_version(jetson_version_pair))[1]}",
+      "${IMAGE_NAME}:${jetson_version(jetson_version_pair)}",
+      "${IMAGE_NAME}:${jetson_version(jetson_version_pair)}-${formatdate("YYYYMMDDhhmm", timestamp())}",
     ]
   )
   labels = {
-    "manifest:org.opencontainers.image.version" : jetson_version.number
-    "org.opencontainers.image.version" = jetson_version.number
+    "manifest:org.opencontainers.image.version" : jetson_version(jetson_version_pair)
+    "org.opencontainers.image.version" = jetson_version(jetson_version_pair)
   }
 }
