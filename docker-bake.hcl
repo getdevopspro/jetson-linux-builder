@@ -11,6 +11,7 @@ target "build" {
   dockerfile = "Dockerfile"
   name       = "${replace(sanitize(IMAGE_NAME), "_", "-")}-${replace(sanitize(version), "_", "-")}"
   platforms = [
+    "linux/amd64",
     "linux/arm64",
   ]
   matrix = {
