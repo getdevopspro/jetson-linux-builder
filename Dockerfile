@@ -16,6 +16,7 @@ ADD ${JETSON_LINUX_RELEASE_PACKAGE_URL} /jetson_linux_release.tbz2
 WORKDIR /workspace
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked  \
+    export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && apt-get install -y lbzip2 && \
     tar --use-compress-program=lbzip2 -xf /jetson_linux_release.tbz2 --strip-components=1
 
@@ -44,6 +45,7 @@ WORKDIR /workspace
 
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked  \
+    export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && apt-get install -y \
         build-essential \
         bzip2 \
@@ -58,7 +60,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         sudo \
         wget
 
-RUN ./tools/l4t_flash_prerequisites.sh
+RUN export DEBIAN_FRONTEND=noninteractive && \
+    ./tools/l4t_flash_prerequisites.sh
 
 CMD ["/bin/bash"]
 
