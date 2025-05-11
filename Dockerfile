@@ -54,6 +54,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         mkbootimg \
         nano \
         python3 \
+        qemu-user-static \
         sudo \
         wget
 
