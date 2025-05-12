@@ -47,11 +47,13 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked  \
     export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && apt-get install -y \
+        bc \
         build-essential \
         bzip2 \
         cpp \
         curl \
         device-tree-compiler \
+        git-core \
         lbzip2 \
         mkbootimg \
         nano \
