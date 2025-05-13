@@ -53,6 +53,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         cpp \
         curl \
         device-tree-compiler \
+        efibootmgr \
         git-core \
         lbzip2 \
         mkbootimg \
@@ -61,10 +62,10 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         qemu-user-static \
         sudo \
         tar \
-        xz-utils \
-        unzip \
         tzdata \
-        wget
+        unzip \
+        wget  \
+        xz-utils
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     ./tools/l4t_flash_prerequisites.sh
