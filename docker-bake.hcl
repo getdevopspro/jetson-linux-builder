@@ -27,7 +27,6 @@ target "build" {
   name       = "${replace(sanitize(IMAGE_NAME), "_", "-")}-${replace(sanitize(jetson_version(jetson_version_pair)), "_", "-")}"
   platforms = [
     "linux/amd64",
-    "linux/arm64",
   ]
   matrix = {
     jetson_version_pair = JETSON_VERSION_PAIRS

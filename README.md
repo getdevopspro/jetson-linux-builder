@@ -36,6 +36,7 @@ docker run -it --rm \
   --network host \
   -v /dev/bus/usb:/dev/bus/usb/ \
   -v /dev:/dev \
+  --platform linux/amd64 \
   ghcr.io/getdevopspro/jetson-linux-builder:36.4.3
 ```
 
