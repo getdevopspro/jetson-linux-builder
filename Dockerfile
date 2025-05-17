@@ -48,15 +48,18 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && apt-get install -y \
         bc \
+        bison \
         build-essential \
         bzip2 \
         cpp \
         curl \
         device-tree-compiler \
         efibootmgr \
+        fleax \
         git-core \
         kmod \
         lbzip2 \
+        libssl-dev \
         mkbootimg \
         nano \
         pigz \
