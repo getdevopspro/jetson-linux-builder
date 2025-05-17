@@ -55,7 +55,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         curl \
         device-tree-compiler \
         efibootmgr \
-        fleax \
+        flex \
         git-core \
         kmod \
         lbzip2 \
