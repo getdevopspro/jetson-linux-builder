@@ -55,6 +55,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         device-tree-compiler \
         efibootmgr \
         git-core \
+        kmod \
         lbzip2 \
         mkbootimg \
         nano \
