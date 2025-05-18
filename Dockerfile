@@ -70,6 +70,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         tzdata \
         unzip \
         wget  \
+        whiptail \
         xz-utils
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
