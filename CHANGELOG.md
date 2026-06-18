@@ -1,3 +1,9 @@
+## [v0.12.0](https://github.com/getdevopspro/jetson-linux-builder/compare/v0.11.0..v0.12.0) - 2026-06-18
+
+### Features
+
+- _(bake)_ Parameterize image name using GITHUB_REPOSITORY_OWNER variable ([`b5ed315`](https://github.com/getdevopspro/jetson-linux-builder/commit/b5ed3153544762b41cc1fb077a87cf310a97e470))
+
 ## [v0.11.0](https://github.com/getdevopspro/jetson-linux-builder/compare/v0.10.2..v0.11.0) - 2026-06-18
 
 ### Features
