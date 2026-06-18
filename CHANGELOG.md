@@ -1,3 +1,13 @@
+## [v0.11.0](https://github.com/getdevopspro/jetson-linux-builder/compare/v0.10.2..v0.11.0) - 2026-06-18
+
+### Features
+
+- _(docker-bake)_ Update version pairs to 36.5.0 and 36.4.3 ([`e249135`](https://github.com/getdevopspro/jetson-linux-builder/commit/e249135851e54a459fe2b5c1979bc7eeb1032284))
+
+### Miscellaneous Tasks
+
+- _(checkout)_ Bump action version ([`e066249`](https://github.com/getdevopspro/jetson-linux-builder/commit/e066249a6043afb6e434f6b59e165f3dc8cac5f2))
+
 ## [v0.10.2](https://github.com/getdevopspro/jetson-linux-builder/compare/v0.10.1..v0.10.2) - 2026-06-18
 
 ### Miscellaneous Tasks
