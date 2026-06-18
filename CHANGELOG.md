@@ -1,3 +1,9 @@
+## [v0.10.1](https://github.com/getdevopspro/jetson-linux-builder/compare/v0.10.0..v0.10.1) - 2026-06-18
+
+### Miscellaneous Tasks
+
+- Bump github action version ([`a0eab63`](https://github.com/getdevopspro/jetson-linux-builder/commit/a0eab6324df5b8be70d29fdaf574dead87861e4b))
+
 ## [v0.10.0](https://github.com/getdevopspro/jetson-linux-builder/compare/v0.9.0..v0.10.0) - 2026-02-13
 
 ### Features
