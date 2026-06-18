@@ -5,7 +5,7 @@ variable "IMAGE_NAME" {
 
 variable "JETSON_VERSION_PAIRS" {
   # IMPORTANT: latest always be the first element in the list
-  default = ["36.4.3,jammy", "35.6.1,focal"]
+  default = ["36.5.0,jammy", "36.4.3,jammy"]
 }
 
 function "jetson_version" {
