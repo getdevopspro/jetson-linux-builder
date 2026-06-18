@@ -4,10 +4,10 @@ A ready-to-use container image for flashing and customizing NVIDIA Jetson device
 
 This image simplifies the flashing process by bundling:
 
-* The **Jetson Linux release package** for a specified L4T version.
-* Essential tools and dependencies required to flash and customize Jetson boards.
-* A containerized, reproducible environment following NVIDIA's official flashing guide.
-* A foundation for CI/CD pipelines and automation of Jetson device customization.
+- The **Jetson Linux release package** for a specified L4T version.
+- Essential tools and dependencies required to flash and customize Jetson boards.
+- A containerized, reproducible environment following NVIDIA's official flashing guide.
+- A foundation for CI/CD pipelines and automation of Jetson device customization.
 
 Perfect for robotics engineers and embedded developers working with **Jetson Nano**, **Xavier**, **Orin**, and other Jetson boards.
 
@@ -15,20 +15,22 @@ Perfect for robotics engineers and embedded developers working with **Jetson Nan
 
 ## 🧰 Features
 
-* Downloads and unpacks the official **Jetson Linux L4T release package**.
-* Includes all dependencies to run `l4t_flash_prerequisites.sh`.
-* Suitable for scripting and automation in CI/CD or development pipelines.
-* Supports container-based development without polluting your host system.
+- Downloads and unpacks the official **Jetson Linux L4T release package**.
+- Includes all dependencies to run `l4t_flash_prerequisites.sh`.
+- Suitable for scripting and automation in CI/CD or development pipelines.
+- Supports container-based development without polluting your host system.
 
 **IMPORTANT: Changes inside the container are not persistent.**
 
 ## 🔧 Usage
+
 Run the container to access a consistent Jetson flashing environment with all necessary tools and dependencies preinstalled. You can use it interactively or within automation pipelines.
 
 ### Example: Enter the Container With Jetson Release Workspace
+
 This will create a container with the Jetson Release contents available at `/workspace` (default folder). Inside the container, you can run the `./flash.sh` script and other tools as needed.
 
-```bash
+````bash
 The container will be removed after exiting.
 ```bash
 docker run -it --rm \
@@ -37,11 +39,13 @@ docker run -it --rm \
   -v /dev/bus/usb:/dev/bus/usb/ \
   -v /dev:/dev \
   --platform linux/amd64 \
-  ghcr.io/getdevopspro/jetson-linux-builder:36.4.3
-```
+  ghcr.io/<YOUR_ORG>/jetson-linux-builder:36.4.3
+````
 
 ### Example: Create a Sample RootFS
+
 This will create a minimal sample rootfs from L4t scripts. It will be saved at `.shared/sample_fs-jammy-minimal.tbz2` of the current directory.
+
 ```bash
 mkdir -p .shared
 docker run --rm \
@@ -51,7 +55,7 @@ docker run --rm \
         -v /var/home/job/mydata/myrepos/jetson-linux-rootfs/.shared:/workspace/shared \
         --workdir /workspace/tools/samplefs \
         --platform linux/amd64 \
-        ghcr.io/getdevopspro/jetson-linux-builder:36.4.3 bash -xc \
+        ghcr.io/<YOUR_ORG>/jetson-linux-builder:36.4.3 bash -xc \
                 'sed -i "s@arch | grep .*@arch | grep \"$(arch)\")\"@" nv_build_samplefs.sh; \
                 sudo bash -x ./nv_build_samplefs.sh \
                 --abi aarch64 \
