@@ -39,7 +39,7 @@ docker run -it --rm \
   -v /dev/bus/usb:/dev/bus/usb/ \
   -v /dev:/dev \
   --platform linux/amd64 \
-  ghcr.io/<YOUR_ORG>/jetson-linux-builder:36.4.3
+  ghcr.io/<YOUR_ORG>/jetson-linux-builder:36.5.0
 ````
 
 ### Example: Create a Sample RootFS
@@ -49,13 +49,13 @@ This will create a minimal sample rootfs from L4t scripts. It will be saved at `
 ```bash
 mkdir -p .shared
 docker run --rm \
-        --name build-rootfs-36.4.3-minimal \
+        --name build-rootfs-36.5.0-minimal \
         --privileged \
         --network host \
         -v /var/home/job/mydata/myrepos/jetson-linux-rootfs/.shared:/workspace/shared \
         --workdir /workspace/tools/samplefs \
         --platform linux/amd64 \
-        ghcr.io/<YOUR_ORG>/jetson-linux-builder:36.4.3 bash -xc \
+        ghcr.io/<YOUR_ORG>/jetson-linux-builder:36.5.0 bash -xc \
                 'sed -i "s@arch | grep .*@arch | grep \"$(arch)\")\"@" nv_build_samplefs.sh; \
                 sudo bash -x ./nv_build_samplefs.sh \
                 --abi aarch64 \
