@@ -1,3 +1,9 @@
+## [v0.12.1](https://github.com/getdevopspro/jetson-linux-builder/compare/v0.12.0..v0.12.1) - 2026-06-19
+
+### Bug Fixes
+
+- _(docker)_ Default Jetson Linux version to 36.5.0 ([`029da50`](https://github.com/getdevopspro/jetson-linux-builder/commit/029da5098d22b5742db4cb81ab2446c652d58cf8))
+
 ## [v0.12.0](https://github.com/getdevopspro/jetson-linux-builder/compare/v0.11.0..v0.12.0) - 2026-06-18
 
 ### Features
